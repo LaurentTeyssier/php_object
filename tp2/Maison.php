@@ -1,19 +1,24 @@
 <?php
 
 class Maison {
-    public $nom;
-    public $longueur;
-    public $largeur;
-    public $etage;
-    public function __construct($newNom, $newLongueur, $newLargeur, $newEtage){
+    public ?string $nom;
+    public ?float $longueur;
+    public ?float $largeur;
+    public ?int $etage;
+    public function __construct(?string $newNom, float $newLongueur, float $newLargeur, ?int $newEtage){
         $this->nom = $newNom;
         $this->longueur = $newLongueur;
         $this->largeur = $newLargeur;
         $this->etage = $newEtage;
     }
-    public function surface(){
-        echo "<p>La surface de ".$this->nom." est égale à: " .$this->longueur*$this->largeur*$this->etage."m2</p>";
+    public function surface():float{
+        if($this->etage > 0){
+        return  $this->longueur*$this->largeur*($this->etage+1);
+        
+    }else {
+        return  $this->longueur*$this->largeur;
     }
+}
 }
 
 ?>
